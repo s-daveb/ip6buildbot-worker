@@ -1,6 +1,4 @@
 ARG SSH_PORT
-ARG DOMAIN
-ARG CERTBOT_EMAIL
 
 INCLUDE https://github.com/s-daveb/ip6jail.template
 
@@ -9,8 +7,5 @@ CP usr /
 RENDER /usr/local/etc/lighttpd-proxy.conf
 
 PKG lighttpd py39-certbot
-
-CMD certbot register -m ${CERTBOT_EMAIL} --agree-tos  || true
-CMD certbot certonly --standalone --domains ${DOMAIN}
 
 SERVICE lighttpd restart
